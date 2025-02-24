@@ -1,11 +1,9 @@
 package com.example.LibraryManagementSystem.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.UUID;
 
@@ -20,9 +18,11 @@ public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
-    @Column(name="author_name")
+    @NotNull
+    @Column(name="name",nullable = false)
 private String name;
-    @Column(name="author_biography")
+    @NotNull
+    @Column(name="biography",nullable = false)
 private String biography;
 @OneToMany(mappedBy = "author")
     private List<BookAuthor> bookAuthors;

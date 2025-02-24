@@ -1,11 +1,10 @@
 package com.example.LibraryManagementSystem.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -20,12 +19,16 @@ public class Borrower {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
-    @Column(name="borrower_name")
+    @NotNull
+    @Column(name="name",nullable = false)
     private String name;
-    @Column(name="borrower_email")
+    @NotNull
+    @Column(name="email",nullable = false)
+    @Email
     private String email;
-    @Column(name="borrower_phone_number")
-    private String phonenumber;
+    @NotNull
+    @Column(name="phone_number",nullable = false)
+    private String phoneNumber;
     @OneToMany(mappedBy = "borrower", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Transaction> transactions=new ArrayList<>();
 

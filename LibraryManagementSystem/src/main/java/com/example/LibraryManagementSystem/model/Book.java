@@ -4,8 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -20,16 +22,21 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
-    @Column(name="book_title")
+    @NotNull
+    @Column(name="title",nullable = false)
     private String title;
-    @Column(name="book_isbn")
+    @NotNull
+    @Column(name="isbn",unique = true, nullable = false)
     private String isbn;
-    @Column(name="author_name")
-    private String authorname;
-    @Column(name="book_category")
+    @NotNull
+    @Column(name="authorName",nullable = false)
+    private String authorName;
+    @NotNull
+    @Column(name="category",nullable = false)
     @Enumerated(EnumType.STRING)
     private Category category;
-    @Column(name="book_availability")
+    @NotNull
+    @Column(name="availability",nullable = false)
     @Enumerated(EnumType.STRING)
     private Availability availability;
     @OneToMany(mappedBy ="book")

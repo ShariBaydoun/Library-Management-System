@@ -26,8 +26,8 @@ public class BorrowerServiceImpl implements BorrowerService {
         if (borrowerRequestDto.getName() !=null){
             borrower.setName(borrowerRequestDto.getName());
         }
-        if (borrowerRequestDto.getPhonenumber() !=null){
-            borrower.setPhonenumber(borrowerRequestDto.getPhonenumber());
+        if (borrowerRequestDto.getPhoneNumber() !=null){
+            borrower.setPhoneNumber(borrowerRequestDto.getPhoneNumber());
         }
         if (borrowerRequestDto.getEmail() !=null){
             borrower.setEmail(borrowerRequestDto.getEmail());

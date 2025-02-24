@@ -1,3 +1,5 @@
+
+
 plugins {
 	id 'java'
 	id 'org.springframework.boot' version '2.7.5'
@@ -15,6 +17,12 @@ java {
 
 repositories {
 	mavenCentral()
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:2021.0.1" // Spring Cloud version matching your Spring Boot
+	}
 }
 
 dependencies {
@@ -36,6 +44,9 @@ dependencies {
 
 	// ModelMapper for object mapping
 	implementation 'org.modelmapper:modelmapper:3.2.2'
+
+	// Spring Cloud Feign Client
+	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
 }
 
 tasks.named('test') {
