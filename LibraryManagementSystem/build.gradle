@@ -47,6 +47,10 @@ dependencies {
 
 	// Spring Cloud Feign Client
 	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+
+	implementation 'org.flywaydb:flyway-core:8.4.2'
+
+
 }
 
 tasks.named('test') {

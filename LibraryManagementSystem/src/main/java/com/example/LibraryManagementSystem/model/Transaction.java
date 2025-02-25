@@ -32,6 +32,4 @@ public class Transaction {
     @ManyToOne
     @JoinColumn(name = "borrower_id", nullable = false)
     private Borrower borrower;
-
-
 }
