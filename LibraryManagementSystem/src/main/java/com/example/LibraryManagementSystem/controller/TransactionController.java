@@ -1,5 +1,6 @@
 package com.example.LibraryManagementSystem.controller;
 
+import com.example.LibraryManagementSystem.dto.BorrowBookRequestDto;
 import
         com.example.LibraryManagementSystem.dto.TransactionResponseDto;
 import com.example.LibraryManagementSystem.model.Transaction;
@@ -18,17 +19,16 @@ import java.util.UUID;
 public class TransactionController {
     private final TransactionService transactionService;
     private ModelMapper modelMapper;
-    @PostMapping("/{borrowerId}/{bookId}/{borrowerEmail}")
-    public ResponseEntity<TransactionResponseDto> borrowBook(@PathVariable UUID borrowerId,@PathVariable UUID bookId
-            ,@PathVariable String borrowerEmail){
-        Transaction transaction = transactionService.borrowBook(borrowerId,bookId,borrowerEmail);
+    @PostMapping
+    public ResponseEntity<TransactionResponseDto> borrowBook(@RequestBody BorrowBookRequestDto borrowBookRequestDto){
+        Transaction transaction = transactionService.borrowBook(borrowBookRequestDto);
         TransactionResponseDto transactionResponseDto = modelMapper.map(transaction, TransactionResponseDto.class);
         return new ResponseEntity<>(transactionResponseDto,
                 HttpStatus.CREATED);
     }
-    @PutMapping("/{borrowerId}/{bookId}")
-    public ResponseEntity<TransactionResponseDto> returnBook(@PathVariable UUID borrowerId,@PathVariable UUID bookId){
-        Transaction transaction=transactionService.returnBook(borrowerId,bookId);
+    @PostMapping("/return")
+    public ResponseEntity<TransactionResponseDto> returnBook(@RequestBody BorrowBookRequestDto borrowBookRequestDto){
+        Transaction transaction=transactionService.returnBook(borrowBookRequestDto);
         TransactionResponseDto transactionResponseDto= modelMapper.map(transaction, TransactionResponseDto.class);
         return new ResponseEntity<>(transactionResponseDto,HttpStatus.OK);
     }
